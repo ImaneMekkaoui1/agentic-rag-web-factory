@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.models.schemas import GenerateRequest, GenerateResponse
-from backend.services.agent_service import generate_application
+from data_pdf.backend.models.schemas import GenerateRequest, GenerateResponse
+from data_pdf.backend.services.agent_service import generate_application
 
 
 app = FastAPI(

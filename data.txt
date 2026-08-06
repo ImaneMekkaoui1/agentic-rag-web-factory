@@ -1,0 +1,2 @@
+Ce projet est une application RAG Agentique avec LangGraph, LangSmith et Qdrant.
+Qdrant est utilisé comme base de données vectorielle pour stocker et rechercher des documents pertinents.
