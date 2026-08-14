@@ -2,7 +2,7 @@ from langgraph.graph import StateGraph
 
 from agents.AgentState import AgentState
 from agents.agent_analyse import AnalyseAgent
-
+from typing_extensions import TypedDict
 
 analyse_agent = AnalyseAgent()
 

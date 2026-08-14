@@ -1,21 +1,13 @@
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Sparkles,
   BrainCircuit,
   Database,
   Bot,
   Code2,
-  Rocket,
   ArrowRight,
-  CheckCircle2,
 } from "lucide-react";
-
-// Imports avec les bons chemins
-import SignIn from "./pages/SignIn/SignIn";
-import SignUp from "./pages/SignUp/SignUp";
-import Workspace from "./pages/Workspace/Workspace";
-import NewProject from "./pages/NewProject/NewProject";
 
 const features = [
   {
@@ -52,7 +44,7 @@ const workflow = [
   "AI Review",
 ];
 
-function Landing() {
+export default function Landing() {
   const navigate = useNavigate();
 
   return (
@@ -65,10 +57,7 @@ function Landing() {
 
       {/* Navbar */}
       <nav className="relative z-10 flex items-center justify-between px-8 py-6">
-        <div
-          className="flex items-center gap-2 cursor-pointer"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        >
+        <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <div className="rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 p-2">
             <Sparkles size={22} />
           </div>
@@ -88,15 +77,17 @@ function Landing() {
         </div>
 
         <div className="flex gap-3">
+          {/* Sign In Button */}
           <button
-            onClick={() => navigate("/signin")}
+            onClick={() => navigate("/sign in")}
             className="rounded-xl border border-white/20 px-5 py-2 hover:bg-white/10 transition"
           >
             Sign In
           </button>
 
+          {/* Get Started Button */}
           <button
-            onClick={() => navigate("/signup")}
+            onClick={() => navigate("/sign up")}
             className="rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 px-5 py-2 font-medium hover:scale-105 transition"
           >
             Get Started
@@ -104,7 +95,7 @@ function Landing() {
         </div>
       </nav>
 
-      {/* Hero */}
+      {/* Hero Section */}
       <section className="relative z-10 px-8 pt-20">
         <div className="mx-auto max-w-6xl text-center">
           <motion.div
@@ -131,14 +122,16 @@ function Landing() {
             </p>
 
             <div className="mt-10 flex justify-center gap-4">
+              {/* Start Building */}
               <button
-                onClick={() => navigate("/workspace")}
+                onClick={() => navigate("/Workspace")}
                 className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 px-7 py-4 font-semibold hover:scale-105 transition"
               >
                 Start Building
                 <ArrowRight size={18} />
               </button>
 
+              {/* Explore Demo */}
               <a
                 href="#workflow"
                 className="rounded-xl border border-white/20 px-7 py-4 hover:bg-white/10 transition inline-block"
@@ -148,7 +141,7 @@ function Landing() {
             </div>
           </motion.div>
 
-          {/* AI workflow preview */}
+          {/* AI Workflow Preview (avec ID pour le scroll) */}
           <motion.div
             id="workflow"
             initial={{ opacity: 0, y: 40 }}
@@ -173,7 +166,7 @@ function Landing() {
         </div>
       </section>
 
-      {/* Features */}
+      {/* Features Section */}
       <section id="features" className="relative z-10 mx-auto max-w-6xl px-8 py-32">
         <h2 className="text-center text-4xl font-bold">
           Everything needed for AI-powered development
@@ -182,7 +175,6 @@ function Landing() {
         <div className="mt-16 grid md:grid-cols-2 gap-6">
           {features.map((feature) => {
             const Icon = feature.icon;
-
             return (
               <motion.div
                 whileHover={{ y: -5 }}
@@ -190,21 +182,15 @@ function Landing() {
                 className="rounded-2xl border border-white/10 bg-white/5 p-8"
               >
                 <Icon className="text-purple-400" size={35} />
-
-                <h3 className="mt-5 text-xl font-semibold">
-                  {feature.title}
-                </h3>
-
-                <p className="mt-3 text-gray-400">
-                  {feature.description}
-                </p>
+                <h3 className="mt-5 text-xl font-semibold">{feature.title}</h3>
+                <p className="mt-3 text-gray-400">{feature.description}</p>
               </motion.div>
             );
           })}
         </div>
       </section>
 
-      {/* About */}
+      {/* About Section */}
       <section id="about" className="relative z-10 mx-auto max-w-6xl px-8 pb-16 text-center">
         <h2 className="text-3xl font-bold">About Agentic RAG Factory</h2>
         <p className="mt-4 text-gray-400 max-w-2xl mx-auto">
@@ -212,19 +198,18 @@ function Landing() {
         </p>
       </section>
 
-      {/* CTA */}
+      {/* CTA Section */}
       <section className="relative z-10 px-8 pb-24">
         <div className="mx-auto max-w-5xl rounded-3xl bg-gradient-to-r from-purple-600 to-blue-600 p-12 text-center">
           <h2 className="text-4xl font-bold">
             Start creating intelligent applications today
           </h2>
-
           <p className="mt-4 text-white/80">
             Let AI agents transform your ideas into complete software solutions.
           </p>
 
           <button
-            onClick={() => navigate("/new-project")}
+            onClick={() => navigate("/NewProject")}
             className="mt-8 rounded-xl bg-white px-8 py-3 font-semibold text-black hover:bg-gray-100 transition hover:scale-105"
           >
             Create your first project
@@ -232,19 +217,5 @@ function Landing() {
         </div>
       </section>
     </div>
-  );
-}
-
-export default function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/workspace" element={<Workspace />} />
-        <Route path="/new-project" element={<NewProject />} />
-      </Routes>
-    </Router>
   );
 }
